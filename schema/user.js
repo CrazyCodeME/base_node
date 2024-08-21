@@ -13,5 +13,11 @@ const userSchema = {
         }),
     },
 };
+const codeSchema = {
+    body:{
+        mobilePhone: Joi.string().min(11).max(11).regex(/^1[3-9]\d{9}$/).message('请输入有效的手机号码'),
+    },
+};
 
 exports.reg_login_schema = userSchema;
+exports.reg_code_schema = codeSchema;

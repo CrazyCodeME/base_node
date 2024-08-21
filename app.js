@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const Joi = require("joi");
 const userRouter = require("./router/user");
+const commonRouter = require("./router/common");
 const config = require("./config");
 const expressJwt = require("express-jwt");
 const app = express();
@@ -10,7 +11,7 @@ app.use(expressJwt({
 }).unless({path: [/^\/api\//]})); // 配置白名单
 app.use(express.json()); // 解析post请求
 app.use(express.urlencoded({extended: false})); // 解析post请求
-app.use("/api",userRouter);
+app.use("/api",userRouter,commonRouter);
 
 // 错误处理中间件应放在所有路由处理之后
 app.use(function(err, req, res, next) {
